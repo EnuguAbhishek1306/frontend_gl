@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const API_URL = process.env.REACT_APP_API_URL || 'https://backend-gl.onrender.com/api/';
+const API_URL = 'https://backend-gl.onrender.com/api';
+
 
 const api = axios.create({
   baseURL: API_URL
@@ -48,4 +49,15 @@ export const updateJob = async (id, jobData) => {
 export const deleteJob = async (id) => {
   const response = await api.delete(`/jobs/${id}`);
   return response.data;
+  
 };
+// export const fetchAdminData = async () => {
+//     const response = await api.get('/admin/data'); // Adjust the endpoint if needed
+//     return response.data;
+//   };
+  
+// export const postJob = async (jobData) => {
+//     const response = await api.post('/jobs', jobData);
+//     return response.data;
+//   };
+  

@@ -46,15 +46,28 @@ const Home = () => {
       {/* Website Description */}
       <div className="bg-gray-100 py-12 px-6 w-full flex justify-center">
         <div className="max-w-6xl text-center">
-          <h1 className="text-4xl font-bold text-gray-900 mb-6">Welcome to Our Job Portal</h1>
+          <h1 className="text-4xl font-bold text-gray-900 mb-6">
+            Welcome to Our Job Portal
+          </h1>
           <p className="text-lg text-gray-700 leading-relaxed">
-            Our platform is a <strong>one-stop destination</strong> for off-campus job opportunities, interview questions, 
-            and study materials related to <strong>programming languages</strong>. We provide <strong>detailed job listings, salary insights, 
-            and essential resources</strong> like company patterns and expert interview tips. <br /><br />
-
-            🚀 Stay updated with <strong>free certification courses, internship opportunities, and career-enhancing resources</strong>.  
-            Our website ensures <strong>easy navigation</strong>, helping you explore jobs with <strong>precise details and deadlines</strong>.  
-            Find everything you need <strong>in one place</strong>! <br /><br />
+            Our platform is a <strong>one-stop destination</strong> for
+            off-campus job opportunities, interview questions, and study
+            materials related to <strong>programming languages</strong>. We
+            provide{" "}
+            <strong>
+              detailed job listings, salary insights, and essential resources
+            </strong>{" "}
+            like company patterns and expert interview tips. <br />
+            <br />
+            🚀 Stay updated with{" "}
+            <strong>
+              free certification courses, internship opportunities, and
+              career-enhancing resources
+            </strong>
+            . Our website ensures <strong>easy navigation</strong>, helping you
+            explore jobs with <strong>precise details and deadlines</strong>.
+            Find everything you need <strong>in one place</strong>! <br />
+            <br />
           </p>
         </div>
       </div>
@@ -70,9 +83,17 @@ const Home = () => {
               placeholder="Search jobs..."
               className="w-full px-4 py-2 border rounded-lg"
             />
-            <Search className="absolute right-3 top-2.5 text-gray-400 pointer-events-none" size={20} />
+            <Search
+              className="absolute right-3 top-2.5 text-gray-400 pointer-events-none"
+              size={20}
+            />
           </div>
-          <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded">Search</button>
+          <button
+            type="submit"
+            className="px-4 py-2 bg-blue-500 text-white rounded"
+          >
+            Search
+          </button>
         </form>
       </div>
 
@@ -88,7 +109,11 @@ const Home = () => {
                 className="bg-white p-6 rounded-lg shadow hover:shadow-md transition flex flex-col md:flex-row items-center"
               >
                 <div className="m-1 w-full md:w-auto">
-                  <img src={job.img} className="h-48 w-full md:w-60 rounded-xl" alt="Company Logo" />
+                  <img
+                    src={job.img}
+                    className="h-48 w-full md:w-60 rounded-xl"
+                    alt="Company Logo"
+                  />
                 </div>
                 <div className="my-1 mx-4 flex flex-col justify-between w-full text-center md:text-left">
                   <div>
@@ -96,15 +121,29 @@ const Home = () => {
                       {job.role} at {job.companyName}
                     </h2>
                     <div className="mt-2 text-gray-600">
-                      <p><strong>Role:</strong> {job.role}</p>
-                      <p><strong>Salary:</strong> {job.salary}</p>
-                      <p><strong>Location:</strong> {job.location}</p>
-                      <p><strong>Deadline:</strong> {new Date(job.deadline).toLocaleDateString('en-GB')}</p>
-                      <p><strong>Posted On:</strong> {new Date(job.createdAt).toLocaleDateString('en-GB')}</p>
+                      <p>
+                        <strong>Role:</strong> {job.role}
+                      </p>
+                      <p>
+                        <strong>Salary:</strong> {job.salary}
+                      </p>
+                      <p>
+                        <strong>Location:</strong> {job.location}
+                      </p>
+                      <p>
+                        <strong>Deadline:</strong>{" "}
+                        {new Date(job.deadline).toLocaleDateString("en-GB")}
+                      </p>
+                      <p>
+                        <strong>Posted On:</strong>{" "}
+                        {new Date(job.createdAt).toLocaleDateString("en-GB")}
+                      </p>
                     </div>
                   </div>
                   <div className="mt-4 flex justify-center">
-                    <span className="text-sm text-blue-500 font-semibold">View & Apply →</span>
+                    <span className="text-sm text-blue-500 font-semibold">
+                      View & Apply →
+                    </span>
                   </div>
                 </div>
               </Link>
@@ -117,7 +156,9 @@ const Home = () => {
                 key={num}
                 onClick={() => setPage(num)}
                 className={`px-4 py-2 rounded ${
-                  page === num ? "bg-blue-500 text-white" : "bg-gray-200 text-gray-700"
+                  page === num
+                    ? "bg-blue-500 text-white"
+                    : "bg-gray-200 text-gray-700"
                 }`}
               >
                 {num}
@@ -132,12 +173,45 @@ const Home = () => {
         <div className="max-w-4xl mx-auto">
           <h3 className="text-lg font-semibold">Connect with Us</h3>
           <div className="flex justify-center gap-6 mt-4">
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400">Facebook</a>
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400">Twitter</a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-pink-400">Instagram</a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-600">LinkedIn</a>
+            <a
+              href="https://facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-blue-400"
+            >
+              Facebook
+            </a>
+            <a
+              href="https://twitter.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-blue-400"
+            >
+              Twitter
+            </a>
+            <a
+              href="https://instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-pink-400"
+            >
+              Instagram
+            </a>
+            <a
+              href="https://linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-blue-600"
+            >
+              LinkedIn
+            </a>
           </div>
-          <p className="mt-4 text-gray-400">© {new Date().getFullYear()} Job Portal. All rights reserved.</p>
+          <p className="mt-4 text-gray-400">
+            © {new Date().getFullYear()} Job Portal. All rights reserved.
+          </p>
+          <Link to="login" className=" text-black px-4 py-2 rounded ">
+            ...
+          </Link>
         </div>
       </footer>
     </div>
