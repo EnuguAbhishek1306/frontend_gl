@@ -31,7 +31,9 @@ const JobDetails = () => {
   }
 
   return (
-    <div className="max-w-4xl mx-auto bg-white rounded-lg shadow p-8">
+    <>
+    <div></div>
+    <div className="max-w-3xl mt-2 mx-auto bg-white rounded-lg shadow p-8">
       <div className="flex flex-col items-center mb-6">  
       <h1 className="text-3xl font-bold text-gray-800">{job.companyName} is Hiring✔</h1>
       </div>
@@ -88,6 +90,7 @@ const JobDetails = () => {
         </a>
       </div>
     </div>
+    </>
   );
 };
 

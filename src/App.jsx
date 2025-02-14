@@ -9,6 +9,7 @@ import AddAdmin from "./pages/AddAdmin";
 import PrivateRoute from "./components/PrivateRoute";
 import { AuthProvider } from "./context/AuthContext";
 import { Analytics } from "@vercel/analytics/react";
+import Footer from "./components/Footer";
 const App = () => {
   return (
     <>
@@ -47,6 +48,7 @@ const App = () => {
                 />
               </Routes>
             </main>
+            <Footer />
           </div>
         </Router>
       </AuthProvider>
