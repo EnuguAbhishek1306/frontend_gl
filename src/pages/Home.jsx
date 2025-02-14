@@ -42,9 +42,10 @@ const Home = () => {
   };
 
   return (
+    <>
     <div className="max-w-4xl mx-auto">
       {/* Website Description */}
-      <div className="bg-gray-100 py-12 px-6 w-full flex justify-center">
+      <div className="bg-gray-100 my-6 py-12 px-6 w-full flex justify-center">
         <div className="max-w-6xl text-center">
           <h1 className="text-4xl font-bold text-gray-900 mb-6">
             Welcome to Our Job Portal
@@ -168,9 +169,11 @@ const Home = () => {
         </>
       )}
 
+    </div>
+    
       {/* Footer Section */}
       <footer className="mt-12 bg-gray-900 text-white py-8 px-4 text-center">
-        <div className="max-w-4xl mx-auto">
+        <div className="w-full mx-auto">
           <h3 className="text-lg font-semibold">Connect with Us</h3>
           <div className="flex justify-center gap-6 mt-4">
             <a
@@ -214,7 +217,7 @@ const Home = () => {
           </Link>
         </div>
       </footer>
-    </div>
+    </>
   );
 };
 
