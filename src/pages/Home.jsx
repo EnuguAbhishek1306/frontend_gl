@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getAllJobs } from "../services/api";
 import { Search } from "lucide-react";
-
+import { useTrackedClick } from '../utils/analytics'
 
 const Home = () => {
   const [jobs, setJobs] = useState([]);
@@ -108,6 +108,7 @@ const Home = () => {
               <Link
                 key={job._id}
                 to={`/job/${job._id}`}
+                onClick={() => trackJobClick(`job_${job._id}`)}
                 className="bg-white p-6 rounded-lg shadow hover:shadow-md transition flex flex-col md:flex-row items-center"
               >
                 <div className="m-1 w-full md:w-auto">

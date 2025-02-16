@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getJob } from '../services/api';
-
+import { useTrackedClick } from '../utils/analytics'
 const JobDetails = () => {
   const { id } = useParams();
   const [job, setJob] = useState(null);
@@ -84,6 +84,7 @@ const JobDetails = () => {
           href={job.companyLink}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => trackApplyClick(job.companyLink)}
           className="bg-blue-500 text-white px-8 py-3 rounded-lg hover:bg-blue-600 transition"
         >
           Apply Now
