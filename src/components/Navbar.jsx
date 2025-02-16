@@ -8,59 +8,61 @@ const Navbar = () => {
     <nav className="bg-white shadow-lg">
       <div className="container mx-auto px-4">
         <div className="flex justify-between h-16">
+          {/* Logo */}
           <div className="flex items-center">
-            <Link to="/" className="text-xl font-bold text-gray-800">
+            <Link
+              to="/"
+              className="text-xl font-bold text-gray-800 hover:text-blue-600 transition duration-300"
+            >
               Job Portal
             </Link>
           </div>
 
-          <div className="flex items-center space-x-4">
+          {/* Navigation Links */}
+          <div className="flex items-center space-x-6">
+            <Link
+              to="/about"
+              className="text-gray-700 hover:text-blue-600 transition duration-300"
+            >
+              About Us
+            </Link>
+            <Link
+              to="/contact"
+              className="text-gray-700 hover:text-blue-600 transition duration-300"
+            >
+              Contact
+            </Link>
+
             {admin ? (
               <>
                 <Link
                   to="/admin/dashboard"
-                  className="text-gray-700 hover:text-gray-900"
+                  className="text-gray-700 hover:text-blue-600 transition duration-300"
                 >
                   Dashboard
                 </Link>
                 <Link
                   to="/admin/post-job"
-                  className="text-gray-700 hover:text-gray-900"
+                  className="text-gray-700 hover:text-blue-600 transition duration-300"
                 >
                   Post Job
                 </Link>
                 {admin.isSuper && (
                   <Link
                     to="/admin/add-admin"
-                    className="text-gray-700 hover:text-gray-900"
+                    className="text-gray-700 hover:text-blue-600 transition duration-300"
                   >
                     Add Admin
                   </Link>
                 )}
                 <button
                   onClick={logout}
-                  className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+                  className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition duration-300"
                 >
                   Logout
                 </button>
               </>
-            ) : (
-              <>
-              {/* <Link
-                  to="login"
-                  className=" text-black px-4 py-2 rounded "
-                >
-                  placement course
-                </Link>
-                <Link
-                  to="login"
-                  className=" text-black px-4 py-2 rounded "
-                >
-                  interships
-                </Link> */}
-                
-              </>
-            )}
+            ) : null}
           </div>
         </div>
       </div>
