@@ -79,7 +79,7 @@ const FreeCertification = () => {
             {certifications.map((certification) => (
               <Link
                 key={certification._id}
-                to={`/certification/${certification._id}`}
+                to={`/free-certification/${certification._id}`}
                 onClick={() => trackJobClick(`certification_${certification._id}`)}
                 className="bg-white p-6 rounded-lg shadow hover:shadow-md transition flex flex-col md:flex-row items-center"
               >
