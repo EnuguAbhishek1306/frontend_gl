@@ -13,6 +13,12 @@ import Footer from "./components/Footer";
 import { AnalyticsProvider } from "./utils/analytics";
 import AboutUs from "./pages/AboutUs";
 import ContactUs from "./pages/ContactUs";
+import Internship from "./pages/Internship";
+import InternshipDetails from "./pages/InternshipDetails";
+import FreeCertification from "./pages/FreeCertification";
+import FreeCertificationDetails from "./pages/FreeCertificationDetails";
+import PostInternship from "./pages/PostInternship";
+import PostFreeCertification from "./pages/PostFreeCertification";
 const App = () => {
   return (
     <>
@@ -24,12 +30,41 @@ const App = () => {
               <main className="container mx-auto ">
                 <Routes>
                   <Route path="/" element={<Home />} />
-                  <Route path="about" element={<AboutUs/>} />
-                  <Route path="contact" element={<ContactUs/>} />
+                  <Route path="about" element={<AboutUs />} />
+                  <Route path="contact" element={<ContactUs />} />
                   <Route path="/job/:id" element={<JobDetails />} />
                   <Route path="login" element={<AdminLogin />} />
+                  <Route path="/internship" element={<Internship />} />
                   <Route
-                    path="/admin/dashboard"
+                    path="/internship/:id"
+                    element={<InternshipDetails />}
+                  />
+                  <Route
+                    path="/free-certification"
+                    element={<FreeCertification />}
+                  />
+                  <Route
+                    path="/free-certification/:id"
+                    element={<FreeCertificationDetails />}
+                  />
+                  <Route
+                    path="/admin/post-internship"
+                    element={
+                      <PrivateRoute>
+                        <PostInternship />
+                      </PrivateRoute>
+                    }
+                  />
+                  <Route
+                    path="/admin/post-free-certification"
+                    element={
+                      <PrivateRoute>
+                        <PostFreeCertification />
+                      </PrivateRoute>
+                    }
+                  />
+                  <Route
+                    path="/admin/"
                     element={
                       <PrivateRoute>
                         <AdminDashboard />

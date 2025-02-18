@@ -28,7 +28,7 @@ const PostJob = () => {
     e.preventDefault();
     try {
       await createJob(formData);
-      navigate('/admin/dashboard');
+      navigate('/admin/');
     } catch (error) {
       setError(error.response?.data?.message || 'Error creating job');
     }

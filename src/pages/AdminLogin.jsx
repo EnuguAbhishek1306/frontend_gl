@@ -15,7 +15,7 @@ const AdminLogin = () => {
     try {
       const data = await loginAdmin({ email, password });
       login(data.admin, data.token);
-      navigate('/admin/dashboard');
+      navigate('/admin');
     } catch (error) {
       setError(error.response?.data?.message || 'Login failed');
     }

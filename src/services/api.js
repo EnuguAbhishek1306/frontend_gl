@@ -51,6 +51,54 @@ export const deleteJob = async (id) => {
   return response.data;
   
 };
+export const getAllInternships = async (page = 1, search = '') => {
+  const response = await api.get(`/internships?page=${page}&search=${search}`);
+  return response.data;
+};
+
+export const getInternship = async (id) => {
+  const response = await api.get(`/internships/${id}`);
+  return response.data;
+};
+
+export const createInternship = async (internshipData) => {
+  const response = await api.post('/internships', internshipData);
+  return response.data;
+};
+
+export const getAllCertifications = async (page = 1, search = '') => {
+  const response = await api.get(`/certifications?page=${page}&search=${search}`);
+  return response.data;
+};
+
+export const getCertification = async (id) => {
+  const response = await api.get(`/certifications/${id}`);
+  return response.data;
+};
+
+export const createCertification = async (certificationData) => {
+  const response = await api.post('/certifications', certificationData);
+  return response.data;
+};
+export const deleteInternship = async (id) => {
+  const response = await api.delete(`/internships/${id}`);
+  return response.data;
+};
+
+export const updateInternship = async (id, data) => {
+  const response = await api.put(`/internships/${id}`, data);
+  return response.data;
+};
+
+export const deleteCertification = async (id) => {
+  const response = await api.delete(`/certifications/${id}`);
+  return response.data;
+};
+
+export const updateCertification = async (id, data) => {
+  const response = await api.put(`/certifications/${id}`, data);
+  return response.data;
+};
 // export const fetchAdminData = async () => {
 //     const response = await api.get('/admin/data'); // Adjust the endpoint if needed
 //     return response.data;
