@@ -19,6 +19,7 @@ import FreeCertification from "./pages/FreeCertification";
 import FreeCertificationDetails from "./pages/FreeCertificationDetails";
 import PostInternship from "./pages/PostInternship";
 import PostFreeCertification from "./pages/PostFreeCertification";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 const App = () => {
   return (
     <>
@@ -47,6 +48,7 @@ const App = () => {
                     path="/free-certification/:id"
                     element={<FreeCertificationDetails />}
                   />
+                  <Route path="/privacy-policy" element={<PrivacyPolicy/>} />
                   <Route
                     path="/admin/post-internship"
                     element={
