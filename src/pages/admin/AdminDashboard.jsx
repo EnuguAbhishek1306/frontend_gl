@@ -9,11 +9,11 @@ import {
   updateInternship,
   deleteCertification,
   updateCertification 
-} from '../services/api';
+} from '../../services/api';
 
 import { Link } from 'react-router-dom';
-import { Pagination } from '../components/Pagination';
-import DataTable from '../components/DataTable';
+import { Pagination } from '../../components/Pagination';
+import DataTable from '../../components/DataTable';
 
 const AdminDashboard = () => {
   // State for active section

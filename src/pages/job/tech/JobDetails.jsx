@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { getJob } from '../services/api';
-import { useTrackedClick } from '../utils/analytics'
+
+import { getJob } from '../../../services/api';
 const JobDetails = () => {
   const { id } = useParams();
   const [job, setJob] = useState(null);

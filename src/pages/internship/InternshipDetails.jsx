@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { getInternship } from '../services/api';
-import { useTrackedClick } from '../utils/analytics';
+import { getInternship } from '../../services/api';
+import { useTrackedClick } from '../../utils/analytics';
 
 const InternshipDetails = () => {
   const { id } = useParams();

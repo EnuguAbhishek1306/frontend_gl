@@ -1,31 +1,30 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { getAllCertifications } from "../services/api";
 import { Search } from "lucide-react";
-import { useTrackedClick } from '../utils/analytics'
+import { getAllMajorProjects } from "../../../services/api";
 
-const FreeCertification = () => {
-  const [certifications, setCertifications] = useState([]);
+const MajorProject = () => {
+  const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    const fetchCertifications = async () => {
+    const fetchProjects = async () => {
       try {
         setLoading(true);
-        const data = await getAllCertifications(page, search);
-        setCertifications(data.certifications);
+        const data = await getAllMajorProjects(page, search);
+        setProjects(data.projects);
         setTotalPages(data.totalPages);
       } catch (error) {
-        console.error("Error fetching certifications:", error);
+        console.error("Error fetching major projects:", error);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchCertifications();
+    fetchProjects();
   }, [page, search]);
 
   const handleSearch = (e) => {
@@ -38,11 +37,11 @@ const FreeCertification = () => {
       <div className="bg-gray-100 my-6 py-12 px-6 w-full flex justify-center">
         <div className="max-w-6xl text-center">
           <h1 className="text-4xl font-bold text-gray-900 mb-6">
-            Free Certification Courses
+            Major Projects Showcase
           </h1>
           <p className="text-lg text-gray-700 leading-relaxed">
-            Enhance your skills with our curated selection of free certification courses.
-            Learn from top platforms and earn recognized certificates to boost your career.
+            Explore a collection of innovative major projects developed by
+            talented individuals across various domains.
           </p>
         </div>
       </div>
@@ -54,7 +53,7 @@ const FreeCertification = () => {
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search courses..."
+              placeholder="Search projects..."
               className="w-full px-4 py-2 border rounded-lg"
             />
             <Search
@@ -76,58 +75,72 @@ const FreeCertification = () => {
       ) : (
         <>
           <div className="grid gap-4">
-            {certifications.map((certification) => (
+            {projects.map((project) => (
               <Link
-                key={certification._id}
-                to={`/free-certification/${certification._id}`}
-                onClick={() => trackJobClick(`certification_${certification._id}`)}
+               
+                to={`/majorproject/${project._id}`}
                 className="bg-white p-6 rounded-lg shadow hover:shadow-md transition flex flex-col md:flex-row items-center"
               >
                 <div className="m-1 w-full md:w-auto">
                   <img
-                    src={certification.img}
+                    src={project.ouputImg}
                     className="h-48 w-full md:w-60 rounded-xl"
-                    alt="Course Cover"
+                    alt="Project Output"
                   />
                 </div>
                 <div className="my-1 mx-4 flex flex-col justify-between w-full text-center md:text-left">
                   <div>
                     <h2 className="text-xl font-semibold text-gray-800">
-                      {certification.title}
+                      {project.title}
                     </h2>
                     <div className="mt-2 text-gray-600">
                       <p>
-                        <strong>Platform:</strong> {certification.platform}
+                        <strong>Domain:</strong> {project.domain}
                       </p>
-                      <p className="mt-2 line-clamp-2">
-                        <strong>Outcomes:</strong> {certification.outcomes}
+                      <p>
+                        <strong>Tools:</strong> {project.tools.join(", ")}
+                      </p>
+                      <p>
+                        <strong>Description:</strong> {project.description}
+                      </p>
+                      <p>
+                        <strong>Created At:</strong>{" "}
+                        {new Date(project.createdAt).toLocaleDateString(
+                          "en-GB"
+                        )}
                       </p>
                     </div>
                   </div>
                   <div className="mt-4 flex justify-center">
-                    <span className="text-sm text-blue-500 font-semibold">
-                      View Course Details →
-                    </span>
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-blue-500 font-semibold"
+                    >
+                      View Project →
+                    </a>
                   </div>
                 </div>
               </Link>
             ))}
           </div>
 
-          <div className="mt-8 flex justify-center gap-2">
-            {Array.from({ length: totalPages }, (_, i) => i + 1).map((num) => (
-              <button
-                key={num}
-                onClick={() => setPage(num)}
-                className={`px-4 py-2 rounded ${
-                  page === num
-                    ? "bg-blue-500 text-white"
-                    : "bg-gray-200 text-gray-700"
-                }`}
-              >
-                {num}
-              </button>
-            ))}
+          <div className="flex justify-center gap-2 mt-6">
+            <button
+              onClick={() => setPage(page - 1)}
+              disabled={page === 1}
+              className="px-4 py-2 bg-gray-300 rounded disabled:opacity-50"
+            >
+              Previous
+            </button>
+            <button
+              onClick={() => setPage(page + 1)}
+              disabled={page >= totalPages}
+              className="px-4 py-2 bg-blue-500 text-white rounded disabled:opacity-50"
+            >
+              Next
+            </button>
           </div>
         </>
       )}
@@ -135,4 +148,4 @@ const FreeCertification = () => {
   );
 };
 
-export default FreeCertification;
+export default MajorProject;

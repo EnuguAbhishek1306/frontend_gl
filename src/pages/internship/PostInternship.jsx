@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { createInternship } from '../services/api';
+import { createInternship } from '../../services/api';
 
 const PostInternship = () => {
   const navigate = useNavigate();

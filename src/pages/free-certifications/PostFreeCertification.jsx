@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { createCertification } from '../services/api';
+import { createCertification } from '../../services/api';
 
 const PostFreeCertification = () => {
   const navigate = useNavigate();

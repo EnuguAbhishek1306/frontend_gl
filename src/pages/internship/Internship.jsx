@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { getAllInternships } from "../services/api";
+import { getAllInternships } from "../../services/api";
 import { Search } from "lucide-react";
-import { useTrackedClick } from '../utils/analytics'
+import { Pagination } from "../../components/Pagination";
+
 
 const Internship = () => {
   const [internships, setInternships] = useState([]);
@@ -34,15 +35,16 @@ const Internship = () => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto">
+    <div className="max-w-5xl mx-auto">
       <div className="bg-gray-100 my-6 py-12 px-6 w-full flex justify-center">
         <div className="max-w-6xl text-center">
           <h1 className="text-4xl font-bold text-gray-900 mb-6">
             Internship Opportunities
           </h1>
           <p className="text-lg text-gray-700 leading-relaxed">
-            Discover exciting internship opportunities to kickstart your career. 
-            We offer a wide range of positions across various industries and locations.
+            Discover exciting internship opportunities to kickstart your career.
+            We offer a wide range of positions across various industries and
+            locations.
           </p>
         </div>
       </div>
@@ -72,21 +74,27 @@ const Internship = () => {
       </div>
 
       {loading ? (
-        <div className="text-center py-8">Loading...</div>
+        <div className="flex justify-center">
+          <div className="flex space-x-2">
+            <div className="w-4 h-8 bg-blue-500 rounded-full animate-bounce [animation-delay:0.6s]"></div>
+            <div className="w-4 h-8 bg-blue-500 rounded-full animate-bounce [animation-delay:0.3s]"></div>
+            <div className="w-4 h-8 bg-blue-500 rounded-full animate-bounce"></div>
+          </div>
+        </div>
       ) : (
         <>
-          <div className="grid gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {internships.map((internship) => (
               <Link
                 key={internship._id}
                 to={`/internship/${internship._id}`}
                 onClick={() => trackJobClick(`internship_${internship._id}`)}
-                className="bg-white p-6 rounded-lg shadow hover:shadow-md transition flex flex-col md:flex-row items-center"
+                className="bg-white p-6 rounded-lg shadow hover:shadow-md transition flex flex-col"
               >
-                <div className="m-1 w-full md:w-auto">
+                <div className="m-1 w-full">
                   <img
                     src={internship.img}
-                    className="h-48 w-full md:w-60 rounded-xl"
+                    className="h-48 w-full rounded-xl object-cover"
                     alt="Company Logo"
                   />
                 </div>
@@ -113,13 +121,15 @@ const Internship = () => {
                       </p>
                       <p>
                         <strong>Last Date:</strong>{" "}
-                        {new Date(internship.lastDateToApply).toLocaleDateString("en-GB")}
+                        {new Date(
+                          internship.lastDateToApply
+                        ).toLocaleDateString("en-GB")}
                       </p>
                     </div>
                   </div>
                   <div className="mt-4 flex justify-center">
                     <span className="text-sm text-blue-500 font-semibold">
-                      View Details →
+                      View & Apply →
                     </span>
                   </div>
                 </div>
@@ -127,21 +137,11 @@ const Internship = () => {
             ))}
           </div>
 
-          <div className="mt-8 flex justify-center gap-2">
-            {Array.from({ length: totalPages }, (_, i) => i + 1).map((num) => (
-              <button
-                key={num}
-                onClick={() => setPage(num)}
-                className={`px-4 py-2 rounded ${
-                  page === num
-                    ? "bg-blue-500 text-white"
-                    : "bg-gray-200 text-gray-700"
-                }`}
-              >
-                {num}
-              </button>
-            ))}
-          </div>
+          <Pagination
+            currentPage={page}
+            totalPages={totalPages}
+            setPage={setPage}
+          />
         </>
       )}
     </div>

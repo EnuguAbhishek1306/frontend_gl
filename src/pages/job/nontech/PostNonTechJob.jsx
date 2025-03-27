@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { createJob } from '../services/api';
+import { createNonTechJob } from '../../../services/api';
 
-const PostJob = () => {
+const PostNonTechJob = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     companyName: '',
@@ -27,7 +27,7 @@ const PostJob = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await createJob(formData);
+      await createNonTechJob(formData);
       navigate('/admin/');
     } catch (error) {
       setError(error.response?.data?.message || 'Error creating job');
@@ -36,16 +36,14 @@ const PostJob = () => {
 
   return (
     <div className="max-w-2xl mx-auto bg-white rounded-lg shadow p-8">
-      <h2 className="text-2xl font-bold text-center mb-6">Post New Job</h2>
+      <h2 className="text-2xl font-bold text-center mb-6">Post New Non-Tech Job</h2>
       
       {error && (
         <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
           {error}
         </div>
       )}
-
       <form onSubmit={handleSubmit} className="space-y-6">
-        {/* Existing Fields */}
         <div>
           <label className="block text-gray-700 mb-2">Company Name</label>
           <input type="text" name="companyName" value={formData.companyName} onChange={handleChange} className="w-full px-3 py-2 border rounded" required />
@@ -93,4 +91,4 @@ const PostJob = () => {
   );
 };
 
-export default PostJob;
+export default PostNonTechJob;

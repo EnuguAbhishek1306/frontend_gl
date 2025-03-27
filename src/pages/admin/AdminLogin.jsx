@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { loginAdmin } from '../services/api';
-import { useAuth } from '../context/AuthContext';
+import { loginAdmin } from '../../services/api';
+import { useAuth } from '../../context/AuthContext';
 
 const AdminLogin = () => {
   const [email, setEmail] = useState('');

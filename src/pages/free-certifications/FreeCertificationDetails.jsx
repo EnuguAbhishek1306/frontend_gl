@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { getCertification } from '../services/api';
-import { useTrackedClick } from '../utils/analytics';
+import { getCertification } from '../../services/api';
+import { useTrackedClick } from '../../utils/analytics';
 
 const FreeCertificationDetails = () => {
   const { id } = useParams();
