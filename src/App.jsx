@@ -3,7 +3,6 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import AboutUs from "./pages/AboutUs";
 import ContactUs from "./pages/ContactUs";
-import PrivacyPolicy from "./pages/PrivacyPolicy";
 
 import { AuthProvider } from "./context/AuthContext";
 import { Analytics } from "@vercel/analytics/react";
@@ -27,8 +26,7 @@ import AdminDashboard from "./pages/admin/AdminDashboard";
 import PostJob from "./pages/job/tech/PostJob";
 import PostNonTechJob from "./pages/job/nontech/PostNonTechJob";
 import AddAdmin from "./pages/admin/AddAdmin";
-// import PostFreeCertification from "./pages/free-certifications/PostFreeCertification";
-// import AdminDashboard from "./pages/admin/AdminDashboard";
+
 
 
 const App = () => {
@@ -44,7 +42,6 @@ const App = () => {
                   <Route path="/" element={<Home />} />
                   <Route path="/about" element={<AboutUs />} />
                   <Route path="/contact" element={<ContactUs />} />
-                  <Route path="/privacy-policy" element={<PrivacyPolicy/>} />
                   <Route path="/job/techjob" element={<Job/>} />
                   <Route path="/job/techjob/:id" element={<JobDetails/>} />
                   <Route path="/job/nontechjob" element={<NonTechJobs/>} />

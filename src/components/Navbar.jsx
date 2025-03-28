@@ -8,24 +8,30 @@ const Navbar = () => {
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   const [applyDropdownOpen, setApplyDropdownOpen] = useState(false);
+  const [mobileApplyDropdownOpen, setMobileApplyDropdownOpen] = useState(false);
   const dropdownRef = useRef();
+  const mobileDropdownRef = useRef();
 
-  // Close mobile menu when clicking a link
-  const closeMenu = () => {
-    setIsOpen(false);
-    setApplyDropdownOpen(false);
-  };
-
-  // Close dropdown when clicking outside
+  // Close dropdowns when clicking outside
   useEffect(() => {
     const handler = (e) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
         setApplyDropdownOpen(false);
       }
+      if (mobileDropdownRef.current && !mobileDropdownRef.current.contains(e.target)) {
+        setMobileApplyDropdownOpen(false);
+      }
     };
     document.addEventListener("mousedown", handler);
     return () => document.removeEventListener("mousedown", handler);
   }, []);
+
+  // Close mobile menu when a link is clicked
+  const closeMenu = () => {
+    setIsOpen(false);
+    setApplyDropdownOpen(false);
+    setMobileApplyDropdownOpen(false);
+  };
 
   const navLinks = [
     { name: "Internship", to: "/internship" },
@@ -63,28 +69,24 @@ const Navbar = () => {
             </button>
 
             {/* Dropdown Menu */}
-            <div
-              className={`absolute z-10 bg-white rounded-xl shadow-xl py-2 w-52 mt-2 space-y-2 transition-all duration-300 ${
-                applyDropdownOpen
-                  ? "opacity-100 scale-100"
-                  : "opacity-0 scale-95 pointer-events-none"
-              } origin-top`}
-            >
-              <Link
-                to="/job/techjob"
-                onClick={closeMenu}
-                className="block px-4 py-2 hover:bg-blue-50 rounded-md transition"
-              >
-                Technical Jobs
-              </Link>
-              <Link
-                to="/job/nontechjob"
-                onClick={closeMenu}
-                className="block px-4 py-2 hover:bg-blue-50 rounded-md transition"
-              >
-                Non-Technical Jobs
-              </Link>
-            </div>
+            {applyDropdownOpen && (
+              <div className="absolute z-10 bg-white rounded-xl shadow-xl py-2 w-52 mt-2 space-y-2">
+                <Link
+                  to="/job/techjob"
+                  onClick={closeMenu}
+                  className="block px-4 py-2 hover:bg-blue-50 rounded-md transition"
+                >
+                  Technical Jobs
+                </Link>
+                <Link
+                  to="/job/nontechjob"
+                  onClick={closeMenu}
+                  className="block px-4 py-2 hover:bg-blue-50 rounded-md transition"
+                >
+                  Non-Technical Jobs
+                </Link>
+              </div>
+            )}
           </div>
 
           {/* Navigation Links */}
@@ -129,53 +131,59 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       <div
-        className={`md:hidden bg-white transition-transform duration-300 shadow-md  ${
-          isOpen ? "h-auto opacity-100" : "h-0 opacity-0 overflow-hidden "
+        className={`md:hidden bg-white transition-all duration-300 shadow-md ${
+          isOpen ? "h-auto opacity-100" : "h-0 opacity-0 overflow-hidden"
         }`}
       >
-        <div className="flex flex-col space-y-3 px-4 mb-2">
-        <button
-            onClick={() => setApplyDropdownOpen(!applyDropdownOpen)}
-            className="text-lg flex items-center"
-          >
-            Apply Job{" "}
-            <ChevronDown
-              size={16}
-              className={`ml-2 ${applyDropdownOpen ? "rotate-180" : ""}`}
-            />
-          </button>
+        <div className="flex flex-col  px-4 py-2">
+          {/* Apply Job Dropdown in Mobile */}
+          <div ref={mobileDropdownRef}>
+            <button
+              onClick={() => setMobileApplyDropdownOpen(!mobileApplyDropdownOpen)}
+              className="text-lg flex items-center"
+            >
+              Apply Job{" "}
+              <ChevronDown
+                size={16}
+                className={`ml-2 transition ${
+                  mobileApplyDropdownOpen ? "rotate-180" : ""
+                }`}
+              />
+            </button>
 
-          {applyDropdownOpen && (
-            <div className="ml-4 space-y-2">
-              <Link
-                to="/job/techjob"
-                onClick={closeMenu}
-                className="block text-gray-700"
-              >
-                Technical Jobs
-              </Link>
-              <Link
-                to="/job/nontechjob"
-                onClick={closeMenu}
-                className="block text-gray-700"
-              >
-                Non-Technical Jobs
-              </Link>
-            </div>
-          )}
+            {mobileApplyDropdownOpen && (
+              <div className="ml-4 ">
+                <Link
+                  to="/job/techjob"
+                  onClick={closeMenu}
+                  className="block text-gray-700"
+                >
+                  Technical Jobs
+                </Link>
+                <Link
+                  to="/job/nontechjob"
+                  onClick={closeMenu}
+                  className="block text-gray-700"
+                >
+                  Non-Technical Jobs
+                </Link>
+              </div>
+            )}
+          </div>
+
+          {/* Navigation Links */}
           {navLinks.map((link) => (
             <Link
               key={link.to}
               to={link.to}
               onClick={closeMenu}
-              className="text-lg"
+              className="text-lg pt-1"
             >
               {link.name}
             </Link>
           ))}
-          {/* Dropdown inside Mobile Menu */}
-         
 
+          {/* Admin Dashboard & Logout */}
           {admin && (
             <>
               <Link to="/admin" onClick={closeMenu} className="text-lg">

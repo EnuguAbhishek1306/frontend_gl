@@ -1,24 +1,46 @@
 import { SitemapStream, streamToPromise } from "sitemap";
 import { createWriteStream } from "fs";
+import path from "path";
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 
-// Function to generate sitemap
-async function generateSitemap() {
-    const sitemap = new SitemapStream({ hostname: "https://gitamlegends.com" });
+// Define site URL
+const SITE_URL = "https://www.gitamlegends.com/"; // Change this to your actual domain
 
-    // Define your website pages here
-    const pages = ["/", "/login"];
+// Define the static routes
+const routes = [
+  "/",
+  "/about",
+  "/contact",
+  "/job/techjob",
+  "/job/nontechjob",
+  "/internship",
+  "/free-certification",
+  "/login/",
+];
 
-    for (const page of pages) {
-        sitemap.write({ url: page, changefreq: "daily", priority: 0.8 });
-    }
+// Create a sitemap stream
+const sitemapStream = new SitemapStream({ hostname: SITE_URL });
 
-    sitemap.end();
+// Get current directory using import.meta.url
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
-    // Save sitemap to a file
-    const sitemapBuffer = await streamToPromise(sitemap);
-    createWriteStream("public/sitemap.xml").write(sitemapBuffer);
+// Write sitemap to file
+const writeStream = createWriteStream(path.join(__dirname, "public", "sitemap.xml"));
 
-    console.log("✅ Sitemap generated successfully!");
-}
+// Pipe stream to file and also generate the promise
+streamToPromise(sitemapStream).then(() => {
+  console.log("✅ Sitemap generated successfully!");
+}).catch((err) => {
+  console.error("❌ Error generating sitemap:", err);
+});
 
-generateSitemap();
+// Add routes
+routes.forEach((route) => {
+  sitemapStream.write({ url: route, changefreq: "daily", priority: 0.8 });
+});
+
+// Close the stream properly
+sitemapStream.end();
+sitemapStream.pipe(writeStream);
