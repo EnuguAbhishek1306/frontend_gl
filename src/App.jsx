@@ -1,9 +1,9 @@
+import { Helmet } from "react-helmet";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import AboutUs from "./pages/AboutUs";
 import ContactUs from "./pages/ContactUs";
-
 import { AuthProvider } from "./context/AuthContext";
 import { Analytics } from "@vercel/analytics/react";
 import Footer from "./components/Footer";
@@ -17,7 +17,6 @@ import MajorProject from "./pages/projects/majorproject/MajorProject";
 import Internship from "./pages/internship/Internship";
 import InternshipDetails from "./pages/internship/InternshipDetails";
 import PrivateRoute from "./components/PrivateRoute";
-
 import FreeCertification from "./pages/free-certifications/FreeCertification";
 import FreeCertificationDetails from "./pages/free-certifications/FreeCertificationDetails";
 import PostInternship from "./pages/internship/PostInternship";
@@ -27,36 +26,37 @@ import PostJob from "./pages/job/tech/PostJob";
 import PostNonTechJob from "./pages/job/nontech/PostNonTechJob";
 import AddAdmin from "./pages/admin/AddAdmin";
 
-
-
 const App = () => {
   return (
     <>
+      <Helmet>
+        <meta name="msvalidate.01" content="E1E97559F39EC70002A419B988438CDB" />
+      </Helmet>
       <AuthProvider>
         <Router>
           <AnalyticsProvider>
             <div className="min-h-screen bg-gray-50">
               <Navbar />
-              <main className="container mx-auto ">
+              <main className="container mx-auto">
                 <Routes>
                   <Route path="/" element={<Home />} />
                   <Route path="/about" element={<AboutUs />} />
                   <Route path="/contact" element={<ContactUs />} />
-                  <Route path="/job/techjob" element={<Job/>} />
-                  <Route path="/job/techjob/:id" element={<JobDetails/>} />
-                  <Route path="/job/nontechjob" element={<NonTechJobs/>} />
-                  <Route path="/job/nontechjob/:id" element={<NonTechJobDetails/>} />
-                  <Route path="/login" element={<AdminLogin/>} />
-                  <Route path="/internship" element={<Internship/>} />
-                  <Route path="/internship/:id" element={<InternshipDetails/>} />
-                  <Route path="/majorproject" element={<MajorProject/>} />
-                  <Route path="/free-certification" element={<FreeCertification/>}/>
-                  <Route path="/free-certification/:id" element={<FreeCertificationDetails/>}  />
+                  <Route path="/job/techjob" element={<Job />} />
+                  <Route path="/job/techjob/:id" element={<JobDetails />} />
+                  <Route path="/job/nontechjob" element={<NonTechJobs />} />
+                  <Route path="/job/nontechjob/:id" element={<NonTechJobDetails />} />
+                  <Route path="/login" element={<AdminLogin />} />
+                  <Route path="/internship" element={<Internship />} />
+                  <Route path="/internship/:id" element={<InternshipDetails />} />
+                  <Route path="/majorproject" element={<MajorProject />} />
+                  <Route path="/free-certification" element={<FreeCertification />} />
+                  <Route path="/free-certification/:id" element={<FreeCertificationDetails />} />
                   <Route
                     path="/admin/post-internship"
                     element={
                       <PrivateRoute>
-                        <PostInternship/>
+                        <PostInternship />
                       </PrivateRoute>
                     }
                   />
@@ -64,7 +64,7 @@ const App = () => {
                     path="/admin/post-free-certification"
                     element={
                       <PrivateRoute>
-                        <PostFreeCertification/>
+                        <PostFreeCertification />
                       </PrivateRoute>
                     }
                   />
@@ -72,7 +72,7 @@ const App = () => {
                     path="/admin/"
                     element={
                       <PrivateRoute>
-                        <AdminDashboard/>
+                        <AdminDashboard />
                       </PrivateRoute>
                     }
                   />
@@ -80,7 +80,7 @@ const App = () => {
                     path="/admin/post-job"
                     element={
                       <PrivateRoute>
-                        <PostJob/>
+                        <PostJob />
                       </PrivateRoute>
                     }
                   />
@@ -88,7 +88,7 @@ const App = () => {
                     path="/admin/post-nontechjob"
                     element={
                       <PrivateRoute>
-                        <PostNonTechJob/>
+                        <PostNonTechJob />
                       </PrivateRoute>
                     }
                   />
@@ -96,11 +96,10 @@ const App = () => {
                     path="/admin/add-admin"
                     element={
                       <PrivateRoute>
-                        <AddAdmin/>
+                        <AddAdmin />
                       </PrivateRoute>
                     }
-                  /> 
-                  
+                  />
                 </Routes>
               </main>
               <Footer />
